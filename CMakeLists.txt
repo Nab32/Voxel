@@ -4,6 +4,8 @@ set(PROJECT_EXEC "voxel")
 
 project(YourOpenGLProject)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
 
 file(GLOB SOURCES "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.h" "${CMAKE_SOURCE_DIR}/*.c")
@@ -19,3 +21,5 @@ target_link_libraries(${PROJECT_EXEC} PRIVATE ${GLFW_LIBRARY})
 
 # Include GLFW headers
 target_include_directories(${PROJECT_EXEC} PRIVATE include)
+
+target_compile_features(${PROJECT_EXEC} PRIVATE cxx_std_11)

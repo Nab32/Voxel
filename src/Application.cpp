@@ -1,8 +1,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "Rendering.h"
 
 int main(){
-    std::cout << "Hello World 2!" << std::endl;
+    Rendering* rendering = new Rendering();
+    rendering->render();
     return 0;
 }
