@@ -1,6 +1,5 @@
 #include "Rendering.h"
 
-
 //This is the constructor for the Rendering class
 //The constructor initializes GLFW and GLAD
 //Params: none
@@ -8,7 +7,6 @@
 Rendering::Rendering(){
     init();
 }
-
 
 //This function initializes GLFW and GLAD
 //Params: none
@@ -32,7 +30,6 @@ void Rendering::init(){
     std::cout << "Everything initialized correctly" << std::endl;
 }
 
-
 //This function renders the scene
 //Params: none
 //returns: none
@@ -41,7 +38,6 @@ void Rendering::render(){
         renderFrame();
     }
 }
-
 
 //This function renders a frame
 //Params: none

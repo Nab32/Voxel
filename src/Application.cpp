@@ -6,5 +6,6 @@
 int main(){
     Rendering* rendering = new Rendering();
     rendering->render();
+    delete rendering;
     return 0;
 }
