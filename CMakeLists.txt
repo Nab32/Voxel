@@ -4,7 +4,9 @@ set(PROJECT_EXEC "voxel")
 
 project(voxel_engine )
 
-set(CMAKE_BUILD_TYPE Debug)
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
 
 set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
 
@@ -14,7 +16,11 @@ file(GLOB SOURCES "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.h" "${CMAKE_SOURCE_DIR}
 add_executable(${PROJECT_EXEC} ${SOURCES})
 
 # Specify the GLFW library file (replace glfw3.lib with the actual library file name)
-set(GLFW_LIBRARY "${CMAKE_SOURCE_DIR}/lib/libglfw.3.dylib")
+if (WIN32)
+    set(GLFW_LIBRARY "${CMAKE_SOURCE_DIR}/lib/glfw3.lib")
+elseif (APPLE)
+    set(GLFW_LIBRARY "${CMAKE_SOURCE_DIR}/lib/libglfw.3.dylib")
+endif()
 
 # Link against GLFW
 target_link_libraries(${PROJECT_EXEC} PRIVATE ${GLFW_LIBRARY})
