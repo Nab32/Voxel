@@ -3,12 +3,20 @@
 //Constructor for camera
 //Params: position - the initial position of the camera
 //returns: none
-Camera::Camera(glm::vec3 position, Window* window)
-	: _position(position), _window(window){
+Camera::Camera(glm::vec3 position)
+	: _cameraPosition(position){
 	_view = glm::mat4(1.0f);
+	_cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+	_cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 	_angleX = 0;
 	_angleY = 0;
 	_angleZ = 0;
+	fov = 45.0f;
+	yaw = -90.0f;
+	pitch = 0.0f;
+	lastX = 800.0f / 2.0;
+	lastY = 600.0 / 2.0;
+	firstMouse = true;
 	updateView();
 }
 
@@ -24,11 +32,7 @@ glm::mat4 Camera::getView() {
 //Params: none
 //returns: none
 void Camera::updateView() {
-	_view = glm::mat4(1.0f);
-	_view = glm::translate(_view, _position);
-	_view = glm::rotate(_view, glm::radians(_angleX), glm::vec3(1.0f, 0.0f, 0.0f));
-	_view = glm::rotate(_view, glm::radians(_angleY), glm::vec3(0.0f, 1.0f, 0.0f));
-	_view = glm::rotate(_view, glm::radians(_angleZ), glm::vec3(0.0f, 0.0f, 1.0f));
+	_view = glm::lookAt(_cameraPosition, _cameraPosition + _cameraFront, _cameraUp);
 }
 
 
@@ -36,7 +40,7 @@ void Camera::updateView() {
 //Params: newPosition - the new position
 //returns: none
 void Camera::updatePosition(glm::vec3 newPosition) {
-	_position = newPosition;
+	_cameraPosition = newPosition;
 	updateView();
 }
 
@@ -44,33 +48,18 @@ void Camera::updatePosition(glm::vec3 newPosition) {
 //Handles all inputs related to the camera
 //Params: None
 //returns: nothing
-void Camera::cameraInputs() {
-	if (glfwGetKey(_window->getWindow(), GLFW_KEY_W) == GLFW_PRESS) {
-		updatePosition(glm::vec3(_position.x, _position.y, _position.z + 0.1f));
-	}
-	if (glfwGetKey(_window->getWindow(), GLFW_KEY_S) == GLFW_PRESS) {
-		updatePosition(glm::vec3(_position.x, _position.y, _position.z - 0.1f));
-	}
-	if (glfwGetKey(_window->getWindow(), GLFW_KEY_A) == GLFW_PRESS) {
-		updatePosition(glm::vec3(_position.x + 0.1f, _position.y, _position.z));
-	}
-	if (glfwGetKey(_window->getWindow(), GLFW_KEY_D) == GLFW_PRESS) {
-		updatePosition(glm::vec3(_position.x - 0.1f, _position.y, _position.z));
-	}
-	if (glfwGetKey(_window->getWindow(), GLFW_KEY_UP) == GLFW_PRESS) {
-		_angleX -= 0.5f;
-		updateView();
-	}
-	if (glfwGetKey(_window->getWindow(), GLFW_KEY_DOWN) == GLFW_PRESS) {
-		_angleX += 0.5f;
-		updateView();
-	}
-	if (glfwGetKey(_window->getWindow(), GLFW_KEY_LEFT) == GLFW_PRESS) {
-		_angleY += 0.5f;
-		updateView();
-	}
-	if (glfwGetKey(_window->getWindow(), GLFW_KEY_RIGHT) == GLFW_PRESS) {
-		_angleY -= 0.5f;
-		updateView();
-	}
+void Camera::cameraInputs(GLFWwindow* window) {
+	float currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+    const float cameraSpeed = 5.5f * deltaTime; // adjust accordingly
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        _cameraPosition += cameraSpeed * _cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        _cameraPosition -= cameraSpeed * _cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        _cameraPosition -= glm::normalize(glm::cross(_cameraFront, _cameraUp)) * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        _cameraPosition += glm::normalize(glm::cross(_cameraFront, _cameraUp)) * cameraSpeed;
+	updateView();
 }

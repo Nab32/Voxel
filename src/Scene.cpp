@@ -68,11 +68,13 @@ void Scene::createCube() {
 //returns: none
 void Scene::generateModels() {
 	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
-
-	Model model1 = Model(_meshes[0], position, _shader);
-	Model model2 = Model(_meshes[0], glm::vec3(position.x, position.y, position.z + 1), _shader);
-	_modelsCube.push_back(model1);
-	_modelsCube.push_back(model2);
+    for (int i = 0; i < 16; i++){
+        for (int j = 0; j < 16; j++){
+            for (int z = 0; z < 16; z++){
+                _modelsCube.push_back(Model(_meshes[currentMesh], glm::vec3(position.x + (float)i, position.y + (float)j, position.z + (float)z), _shader));
+            }
+        }
+    }
 }
 
 

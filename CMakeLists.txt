@@ -10,7 +10,7 @@ endif()
 
 set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
 
-file(GLOB SOURCES "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.h" "${CMAKE_SOURCE_DIR}/*.c")
+file(GLOB SOURCES "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.h" "${CMAKE_SOURCE_DIR}/*.c" "${SOURCE_DIR}/shaders/*.glsl")
 
 # Add your source file
 add_executable(${PROJECT_EXEC} ${SOURCES})

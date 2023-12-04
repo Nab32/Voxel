@@ -12,18 +12,20 @@
 #include "constant.h"
 
 
+
 class Rendering {
     public:
         Rendering();
         void render();
         void init();
         void renderFrame();
+        static void mouse(GLFWwindow* window, double xpos, double ypos);
     private:
         float* test;
         unsigned int VAO, VBO;
         glm::mat4 _projection;
         Scene* scene;
-        Camera* camera;
+        static Camera* camera;
         Shader* _shader;
         Window* _window;
 };

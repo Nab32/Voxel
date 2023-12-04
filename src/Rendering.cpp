@@ -1,5 +1,8 @@
 #include "Rendering.h"
 
+
+
+
 //This is the constructor for the Rendering class
 //The constructor initializes GLFW and GLAD
 //Params: none
@@ -8,7 +11,7 @@ Rendering::Rendering(){
     init();
     _shader = new Shader("/Users/nabilibarissen/Documents/personal/vox/Voxel/src/shaders/vertexShader.glsl", "/Users/nabilibarissen/Documents/personal/vox/Voxel/src/shaders/fragmentShader.glsl");
     _projection = glm::perspective(glm::radians(FOV), (float)width / (float)height, NEAR_PLANE, FAR_PLANE);
-    camera = new Camera(glm::vec3(0.0f, 0.0f, -30.0f), _window);
+    camera = new Camera(glm::vec3(0.0f, 0.0f, 103.0f));
     scene = new Scene(_shader);
     scene->createCube();
     scene->generateModels();
@@ -50,10 +53,9 @@ void Rendering::render(){
 //returns: none
 void Rendering::renderFrame(){
     _window->changeBGColor(0.4f, 0.3f, 0.3f, 1.0f);
-    camera->cameraInputs();
     _window->commonInputs();
+    camera->cameraInputs(_window->getWindow());
     glClear(GL_DEPTH_BUFFER_BIT);
-
     _shader->use();
     _shader->setMat4("view", camera->getView());
     _shader->setMat4("projection", _projection);
