@@ -9,12 +9,13 @@
 class Scene {
 public:
 	Scene(Shader* shader);
-	void createCube(float* vertices, unsigned int numVertices);
+	void createCube();
 	void generateModels();   //IMPLEMENTATION OF CHUNKS LATER
 	std::vector<Model> getModels();
+
 private:
 	int currentMesh;
 	Shader* _shader;
-	std::vector<Mesh> _meshes;
+	std::vector<Mesh*> _meshes;
 	std::vector<Model> _modelsCube;
 };

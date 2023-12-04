@@ -14,12 +14,12 @@
 class Model {
     public:
         //TODO: Model(Mesh* mesh, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, Shader* shader);
-        Model(Mesh mesh, glm::vec3 position, Shader* shader);
+        Model(Mesh* mesh, glm::vec3 position, Shader* shader);
         void updateModel();
         void changePosition(glm::vec3 newPosition);
         void render();
     private:
-        Mesh _mesh;
+        Mesh* _mesh;
         Shader* _shader;
         glm::mat4 _model;
         glm::vec3 _position;

@@ -6,7 +6,7 @@
 //		: position - a vec3 position of the object
 //		: shader - a pointer towards a shader object
 //returns: nothing
-Model::Model(Mesh mesh, glm::vec3 position, Shader* shader)
+Model::Model(Mesh* mesh, glm::vec3 position, Shader* shader)
 	: _mesh(mesh), _position(position), _shader(shader) {
 	_model = glm::mat4(1.0f);
 	_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -33,5 +33,7 @@ void Model::changePosition(glm::vec3 newPosition) {
 void Model::render() {
 	updateModel();
 	_shader->setMat4("model", _model);
-	_mesh.draw();
+	_mesh->bind();
+	_mesh->draw();
+	_mesh->unbind();
 }

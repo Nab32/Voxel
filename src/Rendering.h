@@ -19,9 +19,11 @@ class Rendering {
         void init();
         void renderFrame();
     private:
+        float* test;
+        unsigned int VAO, VBO;
         glm::mat4 _projection;
         Scene* scene;
-        Camera camera;
+        Camera* camera;
         Shader* _shader;
         Window* _window;
 };
