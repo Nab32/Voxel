@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -11,6 +12,7 @@ class Mesh {
         void bind();
         void unbind();
         void createVAO();
+        void draw();
     private:
         float* _vertices;
         unsigned int VBO, VAO;

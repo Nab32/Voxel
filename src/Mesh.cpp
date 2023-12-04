@@ -5,9 +5,8 @@
 //Params: vertices - array of vertices
 //        numVertices - number of vertices
 //returns: none
-Mesh::Mesh(float* vertices, const unsigned int& numVertices) {
-    _vertices = vertices;
-    _numVertices = numVertices;
+Mesh::Mesh(float* vertices, const unsigned int& numVertices)
+    : _vertices(vertices), _numVertices(numVertices){
     createVAO();
 }
 
@@ -58,4 +57,12 @@ void Mesh::createVAO() {
     glEnableVertexAttribArray(0);
     
     unbind();
+}
+
+
+//Draws the mesh (doesnt handle any shaders... Done in model class)
+//Params:: none
+//returns: none
+void Mesh::draw() {
+    glDrawArrays(GL_TRIANGLES, 0, _numVertices);
 }

@@ -1,5 +1,6 @@
+#pragma once
 #include <iostream>
-#include <constant.h>
+#include "constant.h"
 #include "Mesh.h"
 #include "Shader.h"
 
@@ -12,7 +13,8 @@
 
 class Model {
     public:
-        Model(Mesh* mesh, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, Shader* shader);
+        //TODO: Model(Mesh* mesh, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, Shader* shader);
+        Model(Mesh* mesh, glm::vec3 position, Shader* shader);
         void render();
     private:
         Mesh* _mesh;
