@@ -55,9 +55,9 @@ void Rendering::render(){
 //Params: none
 //returns: none
 void Rendering::renderFrame(){
-
     _window->changeBGColor(0.4f, 0.3f, 0.3f, 1.0f);
     camera->cameraInputs();
+    _window->commonInputs();
     glClear(GL_DEPTH_BUFFER_BIT);
 
     _shader->use();

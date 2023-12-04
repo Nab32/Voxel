@@ -13,6 +13,7 @@ class Window {
         void swapBuffers();
         int isClosed();
         void changeBGColor(float r, float g, float b, float a);
+        void commonInputs();
     private:
         static Window* instancePtr;
         Window(const unsigned int width, const unsigned int height, const char* title);
