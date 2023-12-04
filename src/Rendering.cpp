@@ -1,11 +1,5 @@
 #include "Rendering.h"
 
-float vTri[] = {
-	1.0f, 0.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f
-};
-
 //This is the constructor for the Rendering class
 //The constructor initializes GLFW and GLAD
 //Params: none

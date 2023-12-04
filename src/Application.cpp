@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Rendering.h"
 
+
 int main(){
     Rendering* rendering = new Rendering();
     rendering->render();

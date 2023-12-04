@@ -91,6 +91,10 @@ void Window::changeBGColor(float r, float g, float b, float a){
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
+
+//This function handles all inputs that are common to all objects
+//Params: none
+//returns: none
 void Window::commonInputs(){
     if(glfwGetKey(_window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
         glfwSetWindowShouldClose(_window, true);
