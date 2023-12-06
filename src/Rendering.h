@@ -12,14 +12,13 @@
 #include "constant.h"
 
 
-
 class Rendering {
     public:
         Rendering();
         void render();
         void init();
         void renderFrame();
-        static void mouse(GLFWwindow* window, double xpos, double ypos);
+        static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
     private:
         float* test;
         unsigned int VAO, VBO;

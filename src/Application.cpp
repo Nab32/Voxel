@@ -9,7 +9,6 @@ float lastFrame = 0.0f; // Time of last frame
 
 
 int main(){
-
     Rendering* rendering = new Rendering();
     rendering->render();
     delete rendering;

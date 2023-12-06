@@ -105,4 +105,10 @@ void Window::commonInputs(){
     if (glfwGetKey (_window, GLFW_KEY_O) == GLFW_PRESS) {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
+    if (glfwGetKey(_window, GLFW_KEY_N) == GLFW_PRESS) {
+        glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+    if (glfwGetKey(_window, GLFW_KEY_9) == GLFW_PRESS) {
+        glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
 }
