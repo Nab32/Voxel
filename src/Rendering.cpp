@@ -87,7 +87,7 @@ void Rendering::renderFrame(){
     _shader->use();
     _shader->setMat4("view", camera->getView());
     _shader->setMat4("projection", _projection);
-    _shader->setVec3("color", glm::vec3(1.0f, 0.0f, 0.0f));
+    _shader->setVec3("color", glm::vec3(0.0f, 0.0f, 1.0f));
 
     std::vector<Model> models = scene->getModels();
     for (int i = 0; i < models.size(); i++) {

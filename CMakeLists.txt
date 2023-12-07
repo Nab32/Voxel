@@ -4,12 +4,17 @@ set(PROJECT_EXEC "voxel")
 
 project(voxel_engine)
 
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release)
-endif()
 
+
+set(CMAKE_CONFIGURATION_TYPES "Debug" CACHE STRING "" FORCE)
+set(LIBNOISE_LIB_PATH "${CMAKE_SOURCE_DIR}/lib/libnoise.dll")
 set(CMAKE_GENERATOR_TOOLSET "host=x86" CACHE STRING "Platform toolset" FORCE)
 set(CMAKE_GENERATOR_PLATFORM "x86" CACHE STRING "Platform name" FORCE)
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+	set(CMAKE_CONFIGURATION_TYPES "RELEASE" CACHE STRING "" FORCE)
+endif()
 
 set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
 
@@ -36,6 +41,12 @@ target_include_directories(${PROJECT_EXEC} PRIVATE include)
 
 set_target_properties(${PROJECT_EXEC} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
+)
+
+add_custom_command(TARGET ${PROJECT_EXEC} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${LIBNOISE_LIB_PATH}"
+        $<TARGET_FILE_DIR:${PROJECT_EXEC}>
 )
 
 target_compile_features(${PROJECT_EXEC} PRIVATE cxx_std_11)
