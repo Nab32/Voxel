@@ -3,9 +3,6 @@ cmake_minimum_required(VERSION 3.12)
 set(PROJECT_EXEC "voxel")
 
 project(voxel_engine)
-
-
-
 set(CMAKE_CONFIGURATION_TYPES "Debug" CACHE STRING "" FORCE)
 set(LIBNOISE_LIB_PATH "${CMAKE_SOURCE_DIR}/lib/libnoise.dll")
 set(CMAKE_GENERATOR_TOOLSET "host=x86" CACHE STRING "Platform toolset" FORCE)
@@ -13,7 +10,7 @@ set(CMAKE_GENERATOR_PLATFORM "x86" CACHE STRING "Platform name" FORCE)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
-	set(CMAKE_CONFIGURATION_TYPES "RELEASE" CACHE STRING "" FORCE)
+	set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE)
 endif()
 
 set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
@@ -28,6 +25,12 @@ if (WIN32)
     set(GLFW_LIBRARY "${CMAKE_SOURCE_DIR}/lib/glfw3.lib")
 elseif (APPLE)
     set(GLFW_LIBRARY "${CMAKE_SOURCE_DIR}/lib/libglfw.3.dylib")
+endif()
+
+if (MSVC)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
+    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
+    set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
 endif()
 
 # Link against GLFW
@@ -49,4 +52,4 @@ add_custom_command(TARGET ${PROJECT_EXEC} POST_BUILD
         $<TARGET_FILE_DIR:${PROJECT_EXEC}>
 )
 
-target_compile_features(${PROJECT_EXEC} PRIVATE cxx_std_11)
+target_compile_features(${PROJECT_EXEC} PRIVATE cxx_std_17)

@@ -5,7 +5,7 @@ float lastX = width / 2.0f;
 float lastY = height / 2.0f;
 bool firstMouse = true;
 
-Camera* Rendering::camera = new Camera(glm::vec3(0.0f, 4.0f, 30.0f));
+Camera* Rendering::camera = new Camera(glm::vec3(0.0f, 4.0f, 15.0f));
 
 //This is the constructor for the Rendering class
 //The constructor initializes GLFW and GLAD
@@ -18,7 +18,7 @@ Rendering::Rendering(){
     scene = new Scene(_shader);
     scene->createCube();
     scene->generateModels();
-
+    glEnable(GL_DEPTH_TEST);
 }
 
 void Rendering::mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
@@ -87,7 +87,6 @@ void Rendering::renderFrame(){
     _shader->use();
     _shader->setMat4("view", camera->getView());
     _shader->setMat4("projection", _projection);
-    _shader->setVec3("color", glm::vec3(0.0f, 0.0f, 1.0f));
 
     std::vector<Model> models = scene->getModels();
     for (int i = 0; i < models.size(); i++) {

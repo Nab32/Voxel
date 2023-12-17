@@ -5,6 +5,8 @@
 #include "Model.h"
 #include <vector>
 #include <unordered_map>
+#include <noise/noise.h>
+#include "Textures.h"
 
 class Scene {
 public:
@@ -12,7 +14,7 @@ public:
 	void createCube();
 	void generateModels();   //IMPLEMENTATION OF CHUNKS LATER
 	std::vector<Model> getModels();
-
+	double** generateNoise();
 private:
 	int currentMesh;
 	Shader* _shader;

@@ -51,10 +51,12 @@ void Mesh::createVAO() {
     bind();
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, _numVertices * 3 * 4, _vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, _numVertices * 5 * sizeof(float), _vertices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
     
     unbind();
 }
@@ -68,4 +70,3 @@ void Mesh::draw() {
     glDrawArrays(GL_TRIANGLES, 0, _numVertices);
     unbind();
 }
-

@@ -14,7 +14,6 @@
 #include <noise/noise.h>
 #include "constant.h"
 
-
 class Rendering {
     public:
         Rendering();
