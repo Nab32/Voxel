@@ -49,7 +49,7 @@ void Camera::cameraInputs(GLFWwindow* window) {
 	float currentFrame = glfwGetTime();
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
-    const float cameraSpeed = 5.5f * deltaTime; // adjust accordingly
+    const float cameraSpeed = 9.0f * deltaTime; // adjust accordingly
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         _cameraPosition += cameraSpeed * _cameraFront;
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)

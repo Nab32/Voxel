@@ -4,3 +4,8 @@
 #define FAR_PLANE 150.0f
 const unsigned int width = 1600;
 const unsigned int height = 800;
+
+enum class Textures {
+	COBBLE,
+	WOOD
+};

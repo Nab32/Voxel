@@ -33,8 +33,8 @@ void Model::changePosition(glm::vec3 newPosition) {
 void Model::render() {
 	updateModel();
 	_shader->setMat4("model", _model);
-	_text->bind();
 	_mesh->bind();
+	_text->bind();
 	_mesh->draw();
 	_mesh->unbind();
 }

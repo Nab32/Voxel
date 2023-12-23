@@ -1,14 +1,12 @@
 #include "Textures.h"
 
+
 Texture::Texture(char* path, Shader* shader) :
 	_shader(shader) {
-
-	_data = stbi_load(path, &_width, &_height, &_nrChannels, 0);
-	
-	_shader->setInt("texture", 0);
-	std::cout << path << std::endl;
 	stbi_set_flip_vertically_on_load(true);
+	_data = stbi_load(path, &_width, &_height, &_nrChannels, 0);
 	loadTexture();
+	std::cout << path << std::endl;
 }
 
 void Texture::loadTexture() {
@@ -31,6 +29,7 @@ void Texture::loadTexture() {
 }
 
 void Texture::bind() {
-	glActiveTexture(GL_TEXTURE0);
+	_shader->setInt("text", (_textureID - 1));
+	glActiveTexture(GL_TEXTURE0 + (_textureID - 1));
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 }

@@ -1,7 +1,8 @@
 #include "Scene.h"
+#include <random>
 
-//Cube vertices
-float cubeVert[] = {
+std::vector<float> cubeVert = {
+    //VERTICES            //TEXTURE COORDS
     -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
      0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
      0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
@@ -58,7 +59,7 @@ Scene::Scene(Shader* shader)
 //Params: none
 //returns: none
 void Scene::createCube() {
-	Mesh* cube = new Mesh(cubeVert, 36);
+	Mesh* cube = new Mesh(cubeVert.data(), 36);
 	_meshes.push_back(cube);
 }
 
@@ -67,18 +68,23 @@ void Scene::createCube() {
 //Params: none
 //returns: none
 void Scene::generateModels() {
-    Texture* cobble = new Texture("C:/Users/nabil/OneDrive/Desktop/voxel/Voxel/src/textures/cobblestone.jpg", _shader);
+    double** arrayTer = generateNoise();
     Texture* wood = new Texture("C:/Users/nabil/OneDrive/Desktop/voxel/Voxel/src/textures/woodencrate.jpg", _shader);
-    for (int i = 0; i < 32; i++) {
-        for (int j = 0; j < 32; j++) {
-            if (i % 2 == 0) {
-                _modelsCube.push_back(Model(_meshes[0], glm::vec3(i, 1.0f, j), _shader, cobble));
-            }
-            else {
-                _modelsCube.push_back(Model(_meshes[0], glm::vec3(i, 0.0f, j), _shader, wood));
-            }
+    Texture* cobble = new Texture("C:/Users/nabil/OneDrive/Desktop/voxel/Voxel/src/textures/cobblestone.jpg", _shader);
+    Texture* dirt = new Texture("C:/Users/nabil/OneDrive/Desktop/voxel/Voxel/src/textures/dirt.jpg", _shader);
+    std::random_device rd;
+    std::mt19937 generator(rd());
+    std::uniform_int_distribution<int> distribution(0, 1);
+    for (int i = 0; i < 124; i++) {
+        for (int j = 0; j < 124; j++) {
+            // Generate a random number (0 or 1)
+            int result = distribution(generator);
+            _modelsCube.push_back(Model(_meshes[0], glm::vec3(i, int(arrayTer[i][j] * 15), j), _shader, result ? cobble : dirt));
+            _modelsCube.push_back(Model(_meshes[0], glm::vec3(i, int(arrayTer[i][j] * 15) - 1, j), _shader, result ? cobble : dirt));
+            _modelsCube.push_back(Model(_meshes[0], glm::vec3(i, int(arrayTer[i][j] * 15) - 2, j), _shader, result ? cobble : dirt));
         }
     }
+
 }
 
 
