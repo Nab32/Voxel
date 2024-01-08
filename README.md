@@ -1,6 +1,6 @@
 # Voxel engine
 
-A simple voxel engine fully coded in C/C++ using OpenGL.
+A simple voxel engine fully coded in C/C++ using OpenGL. The game currently generates a random 128x128 world every 5 seconds to showcase the noise generation algorithm.
 
 
 ## Install
@@ -14,3 +14,10 @@ To download the project (currently only works on windows), you'll have to follow
 * You will have a **Visual Studio** solution inside your build folder. You will simply have to open that solution and run the builder.
 
 The executable will be available in the bin folder.
+
+## Images
+This was an early build with no world generation : 
+* ![voxel_img2](https://github.com/Nab32/Voxel/assets/90017423/51247212-8291-4a7a-a349-92314a3fb63a)
+This is a randomly generated 128x128 world :
+* ![voxel_img1](https://github.com/Nab32/Voxel/assets/90017423/1ff1b5e4-28e0-4350-bb16-6aacac0b5550)
+
