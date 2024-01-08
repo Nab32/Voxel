@@ -16,8 +16,6 @@ To download the project (currently only works on windows), you'll have to follow
 The executable will be available in the bin folder.
 
 ## Images
-This was an early build with no world generation : 
-* ![voxel_img2](https://github.com/Nab32/Voxel/assets/90017423/51247212-8291-4a7a-a349-92314a3fb63a)
-This is a randomly generated 128x128 world :
-* ![voxel_img1](https://github.com/Nab32/Voxel/assets/90017423/1ff1b5e4-28e0-4350-bb16-6aacac0b5550)
+![voxel_img2](https://github.com/Nab32/Voxel/assets/90017423/51247212-8291-4a7a-a349-92314a3fb63a)
+![voxel_img1](https://github.com/Nab32/Voxel/assets/90017423/1ff1b5e4-28e0-4350-bb16-6aacac0b5550)
 
